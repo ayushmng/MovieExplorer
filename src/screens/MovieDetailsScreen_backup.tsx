@@ -11,97 +11,63 @@ import {
 import { movieDetails, actors } from "../constants/data";
 import VideoScreen from "../components/VideoScreen";
 import { useNavigation } from "@react-navigation/native";
-import { useTheme } from "../hooks/useTheme";
-import { AntDesign, Feather } from "@expo/vector-icons";
-
-interface TagProps {
-  text: string;
-  backgroundColor: string;
-  textColor: string;
-}
 
 export default function MovieDetailsScreen() {
   const navigation = useNavigation();
   const [expanded, setExpanded] = useState(false);
-  const { colors } = useTheme();
-
-  const Tag = ({ text, backgroundColor, textColor }: TagProps) => {
-    return (
-      <View style={[styles.tag, { backgroundColor }]}>
-        <Text style={[styles.tagText, { color: textColor }]}>{text}</Text>
-      </View>
-    );
-  };
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
+    <ScrollView style={styles.container}>
       {/* Video */}
       <View style={styles.videoContainer}>
         <VideoScreen />
-
         {/* Back Button */}
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Feather name="arrow-left" size={24} color={colors.text} />
+          <Text style={styles.icon}>←</Text>
         </TouchableOpacity>
 
         {/* Share Button */}
         <TouchableOpacity style={styles.shareButton}>
-          <Feather name="share-2" size={24} color={colors.text} />
+          <Text style={styles.icon}>⤴</Text>
         </TouchableOpacity>
 
-        <Text style={[styles.duration, { color: colors.text }]}>
-          {movieDetails.duration}
-        </Text>
+        {/* Play Button */}
+        {/* <TouchableOpacity style={styles.playButton} onPress={toggleVideo}>
+          <Text style={styles.playIcon}>▶</Text>
+        </TouchableOpacity> */}
+
+        <Text style={styles.duration}>{movieDetails.duration}</Text>
       </View>
 
       {/* Movie Info */}
-      <View style={[styles.content, { backgroundColor: colors.background }]}>
+      <View style={styles.content}>
         <View style={styles.tagsRow}>
-          <Tag
-            text="+18"
-            backgroundColor={colors.card}
-            textColor={colors.text}
-          />
-          <Tag
-            text={movieDetails.genre}
-            backgroundColor={colors.card}
-            textColor={colors.text}
-          />
-          <Tag
-            text={`⭐ ${movieDetails.rating}`}
-            backgroundColor={colors.card}
-            textColor={colors.text}
-          />
+          <Tag text="+18" />
+          <Tag text={movieDetails.genre} />
+          <Tag text={`⭐ ${movieDetails.rating}`} />
 
           <TouchableOpacity style={styles.heart}>
-            <AntDesign name="heart" size={22} color={colors.accent} />
+            <Text>❤️</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={[styles.title, { color: colors.text }]}>
-          {movieDetails.title}
-        </Text>
+        <Text style={styles.title}>{movieDetails.title}</Text>
 
-        <Text style={[styles.description, { color: colors.textSecondary }]}>
+        <Text style={styles.description}>
           {expanded
             ? movieDetails.description
             : movieDetails.description.slice(0, 110)}
 
-          <Text
-            style={[styles.showMore, { color: colors.accent }]}
-            onPress={() => setExpanded(!expanded)}
-          >
+          <Text style={styles.showMore} onPress={() => setExpanded(!expanded)}>
             {expanded ? " Show Less" : " Show More"}
           </Text>
         </Text>
 
         {/* Actors */}
-        <Text style={[styles.actorsTitle, { color: colors.text }]}>Actors</Text>
+        <Text style={styles.actorsTitle}>Actors</Text>
 
         <FlatList
           horizontal
@@ -111,32 +77,36 @@ export default function MovieDetailsScreen() {
           renderItem={({ item }) => (
             <View style={styles.actorCard}>
               <Image source={{ uri: item.image }} style={styles.actorImage} />
-              <Text style={[styles.actorName, { color: colors.textSecondary }]}>
-                {item.name}
-              </Text>
+              <Text style={styles.actorName}>{item.name}</Text>
             </View>
           )}
         />
 
         {/* IMDb Button */}
         <TouchableOpacity style={styles.imdbButton}>
-          <Text style={[styles.imdbText, { color: colors.text }]}>
-            Open IMDb
-          </Text>
+          <Text style={styles.imdbText}>Open IMDb</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 }
 
+function Tag(props) {
+  return (
+    <View style={styles.tag}>
+      <Text style={styles.tagText}>{props.text}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#121223",
   },
 
   videoContainer: {
     height: 420,
-    position: "relative",
   },
 
   video: {
@@ -148,21 +118,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 50,
     left: 20,
-    padding: 8,
-    borderRadius: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
 
   shareButton: {
     position: "absolute",
     top: 50,
     right: 20,
-    padding: 8,
-    borderRadius: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
 
   icon: {
+    color: "#fff",
     fontSize: 24,
   },
 
@@ -170,6 +135,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: "center",
     top: "45%",
+    backgroundColor: "red",
     width: 70,
     height: 70,
     borderRadius: 35,
@@ -178,6 +144,7 @@ const styles = StyleSheet.create({
   },
 
   playIcon: {
+    color: "#fff",
     fontSize: 28,
   },
 
@@ -185,11 +152,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     bottom: 20,
+    color: "#fff",
     fontSize: 16,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 6,
   },
 
   content: {
@@ -202,6 +166,7 @@ const styles = StyleSheet.create({
   },
 
   tag: {
+    backgroundColor: "#2A2A3D",
     paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 10,
@@ -209,32 +174,33 @@ const styles = StyleSheet.create({
   },
 
   tagText: {
-    fontSize: 14,
+    color: "#fff",
   },
 
   heart: {
     marginLeft: "auto",
-    padding: 8,
   },
 
   title: {
     fontSize: 30,
     fontWeight: "bold",
+    color: "#fff",
     marginTop: 15,
   },
 
   description: {
+    color: "#ddd",
     marginTop: 10,
     lineHeight: 22,
   },
 
   showMore: {
-    fontWeight: "600",
+    color: "red",
   },
 
   actorsTitle: {
     fontSize: 24,
-    fontWeight: "600",
+    color: "#fff",
     marginTop: 25,
     marginBottom: 15,
   },
@@ -251,16 +217,16 @@ const styles = StyleSheet.create({
   },
 
   actorName: {
+    color: "#fff",
     marginTop: 6,
-    textAlign: "center",
   },
 
   imdbButton: {
+    backgroundColor: "#F2C94C",
     padding: 18,
     borderRadius: 10,
     marginTop: 30,
     alignItems: "center",
-    backgroundColor: "#F5C518",
   },
 
   imdbText: {

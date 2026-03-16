@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "../themes";
 
 export default function SearchScreen({ data = [], onResults }) {
+  const { colors } = useTheme();
   const navigation = useNavigation();
 
   const [query, setQuery] = useState("");
@@ -38,7 +40,7 @@ export default function SearchScreen({ data = [], onResults }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Header */}
       <View style={styles.header}>
         {/* Back Button */}
@@ -46,19 +48,24 @@ export default function SearchScreen({ data = [], onResults }) {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Feather name="arrow-left" size={22} color="#fff" />
+          <Feather name="arrow-left" size={22} color={colors.icon} />
         </TouchableOpacity>
 
         {/* Search Box */}
-        <View style={styles.searchBox}>
-          <Feather name="search" size={20} color="#aaa" />
+        <View
+          style={[
+            styles.searchBox,
+            { backgroundColor: colors.searchBackground },
+          ]}
+        >
+          <Feather name="search" size={20} color={colors.textMuted} />
 
           <TextInput
             value={query}
             onChangeText={setQuery}
             placeholder="Search..."
             placeholderTextColor="#aaa"
-            style={styles.input}
+            style={[styles.input, { color: colors.text }]}
             autoFocus
           />
 

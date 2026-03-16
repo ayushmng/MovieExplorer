@@ -18,7 +18,7 @@ export const moviesList = [
     title: "Under Paris",
     rating: 5.0,
     image:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Under_Paris_film.jpeg/250px-Under_Paris_film.jpeg",
+      "https://m.media-amazon.com/images/M/MV5BMDM5ODBiN2ItOTk4Yi00NzgyLWE2YTktYzhjYTc2ODE4ZTE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
   },
   {
     id: "2",

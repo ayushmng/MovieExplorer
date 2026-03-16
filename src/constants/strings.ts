@@ -1,4 +1,4 @@
-export const MyStrings = {
+export const Strings = {
   displayText: {
     welcome_back: "Welcome Back",
   },

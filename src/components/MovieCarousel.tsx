@@ -10,13 +10,22 @@ import {
 } from "react-native";
 import { getStars } from "../utils/ratingUtils";
 import { MovieCarouselProps } from "../types/movie";
+import { useTheme } from "../themes";
 
 export const MovieCarousel = ({ title, data }: MovieCarouselProps) => {
+  const { colors, theme, toggleTheme } = useTheme();
+
   return (
     <View style={styles.section}>
       <TouchableOpacity style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>{title}</Text>
-        <MaterialIcons name="keyboard-arrow-right" size={28} color="white" />
+        <Text style={[styles.sectionTitle, { color: colors.text }]}>
+          {title}
+        </Text>
+        <MaterialIcons
+          name="keyboard-arrow-right"
+          size={28}
+          color={colors.icon}
+        />
       </TouchableOpacity>
 
       <FlatList
@@ -27,7 +36,10 @@ export const MovieCarousel = ({ title, data }: MovieCarouselProps) => {
         renderItem={({ item }) => (
           <View style={styles.movieCard}>
             <Image source={{ uri: item.image }} style={styles.movieImage} />
-            <Text numberOfLines={1} style={styles.movieTitle}>
+            <Text
+              numberOfLines={1}
+              style={[styles.movieTitle, { color: colors.text }]}
+            >
               {item.title}
             </Text>
             <Text style={styles.rating}>{getStars(item.rating)}</Text>

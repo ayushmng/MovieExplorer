@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
+import { useTheme } from "../themes";
 
 export default function SearchBar({ data = [], onResults }) {
+  const { colors } = useTheme();
+
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
 
@@ -35,7 +38,7 @@ export default function SearchBar({ data = [], onResults }) {
   };
 
   return (
-    <View style={styles.searchBox}>
+    <View style={[styles.searchBox, { backgroundColor: colors.background }]}>
       <Feather name="search" size={20} color="#aaa" />
 
       <TextInput

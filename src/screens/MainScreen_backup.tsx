@@ -1,26 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
+  TextInput,
+  FlatList,
   ScrollView,
   TouchableOpacity,
-  FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign, FontAwesome, Feather } from "@expo/vector-icons";
-import { useTheme } from "../hooks/useTheme";
-import { featuredMovies, moviesList } from "../constants/data"; // Adjust import as needed
-import { Strings } from "../constants/strings";
+import { MyStrings } from "../constants/strings";
+import { featuredMovies, moviesList } from "../constants/data";
 import { MovieCarousel } from "../components/MovieCarousel";
+import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
 
 export default function MainScreen() {
   const navigation = useNavigation();
-  const { colors, theme, toggleTheme } = useTheme();
+  const [darkTheme, setDarkTheme] = useState(true);
 
   const Header = () => (
-    <View style={[styles.header, { backgroundColor: colors.background }]}>
+    <View style={styles.header}>
       <View style={styles.subHeader}>
         <Image
           source={{
@@ -30,51 +30,45 @@ export default function MainScreen() {
         />
 
         <View>
-          <Text style={[styles.welcome, { color: colors.textMuted }]}>
-            {Strings.displayText.welcome_back}
+          <Text style={styles.welcome}>
+            {MyStrings.displayText.welcome_back}
           </Text>
-          <Text style={[styles.name, { color: colors.text }]}>
-            {Strings.user.name}
-          </Text>
+          <Text style={styles.name}>{MyStrings.user.name}</Text>
         </View>
       </View>
       <View style={styles.subHeader2}>
-        {theme === "dark" ? (
+        {darkTheme ? (
           <AntDesign
             name="sun"
             size={22}
-            color={colors.toggleIcon}
-            onPress={toggleTheme}
+            color={"#575B66"}
+            onPress={() => setDarkTheme(!darkTheme)}
           />
         ) : (
           <FontAwesome
             name="moon-o"
             size={22}
-            color={colors.toggleIcon}
-            onPress={toggleTheme}
+            color={"#575B66"}
+            onPress={() => setDarkTheme(!darkTheme)}
           />
         )}
-        <Feather name="bookmark" size={22} color={colors.toggleIcon} />
+        <Feather name="bookmark" size={22} color={"#575B66"} />
       </View>
     </View>
   );
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
+    <ScrollView style={styles.container}>
       {/* Header */}
       <Header />
-
       {/* Search */}
       <TouchableOpacity
         onPress={() => navigation.navigate("Search", { data: moviesList })}
-        style={[styles.searchBox, { backgroundColor: colors.searchBackground }]}
+        style={styles.searchBox}
       >
-        <Feather name="search" size={20} color={colors.textMuted} />
-        <Text style={[styles.searchText, { color: colors.textMuted }]}>
-          Search
-        </Text>
+        <Feather name="search" size={20} color={"#aaa"} />
+        <Text style={styles.text}>Search</Text>
+        {/* <TextInput placeholder="Search" placeholderTextColor="#aaa" /> */}
       </TouchableOpacity>
 
       {/* Featured Carousel */}
@@ -90,29 +84,18 @@ export default function MainScreen() {
           >
             <Image source={{ uri: item.image }} style={styles.featureImage} />
 
-            <View
-              style={[
-                styles.featureOverlay,
-                { backgroundColor: colors.overlay },
-              ]}
-            >
-              <Text style={[styles.featureTitle, { color: colors.text }]}>
-                {item.title}
-              </Text>
-              <Text
-                style={[styles.featureGenre, { color: colors.textSecondary }]}
-              >
-                {item.genre}
-              </Text>
-              <Text style={[styles.featureMeta, { color: colors.textMuted }]}>
+            <View style={styles.featureOverlay}>
+              <Text style={styles.featureTitle}>{item.title}</Text>
+
+              <Text style={styles.featureGenre}>{item.genre}</Text>
+
+              <Text style={styles.featureMeta}>
                 {item.duration} • {item.language}
               </Text>
             </View>
 
-            <TouchableOpacity
-              style={[styles.playButton, { backgroundColor: colors.accent }]}
-            >
-              <Text style={{ color: colors.text }}>▶</Text>
+            <TouchableOpacity style={styles.playButton}>
+              <Text style={{ color: "#fff" }}>▶</Text>
             </TouchableOpacity>
           </TouchableOpacity>
         )}
@@ -121,7 +104,7 @@ export default function MainScreen() {
       {/* My List */}
       <MovieCarousel title="My List" data={moviesList} />
 
-      {/* Recommended List */}
+      {/* Recommended List*/}
       <MovieCarousel title="Recommended" data={moviesList} />
     </ScrollView>
   );
@@ -130,8 +113,10 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#0F0F1A",
     paddingTop: 50,
   },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -139,41 +124,46 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 20,
   },
+
   subHeader: {
     flexDirection: "row",
   },
+
   subHeader2: {
     flexDirection: "row",
     gap: 18,
   },
+
   avatar: {
     width: 45,
     height: 45,
     borderRadius: 25,
     marginRight: 12,
   },
+
   welcome: {
+    color: "#aaa",
     fontSize: 14,
   },
+
   name: {
+    color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
   },
+
   searchBox: {
     gap: 8,
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#1B1B2A",
     marginHorizontal: 18,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 4,
     marginBottom: 24,
   },
-  searchText: {
-    fontSize: 16,
-    marginLeft: 8,
-    marginVertical: 8,
-  },
+
   featureCard: {
     width: 300,
     height: 170,
@@ -181,32 +171,46 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: "hidden",
   },
+
   featureImage: {
     width: "100%",
     height: "100%",
   },
+
   featureOverlay: {
     position: "absolute",
     bottom: 10,
     left: 10,
-    right: 10,
-    padding: 10,
-    borderRadius: 8,
   },
+
   featureTitle: {
+    color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
   },
+
   featureGenre: {
+    color: "#ddd",
     fontSize: 12,
   },
+
   featureMeta: {
+    color: "#bbb",
     fontSize: 11,
   },
+
+  text: {
+    color: "#575B66",
+    fontSize: 16,
+    marginLeft: 8,
+    marginVertical: 8,
+  },
+
   playButton: {
     position: "absolute",
     right: 15,
     bottom: 15,
+    backgroundColor: "red",
     width: 40,
     height: 40,
     borderRadius: 20,
