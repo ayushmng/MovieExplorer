@@ -37,27 +37,24 @@ export default function MovieDetailsScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}
     >
-      {/* Video */}
-      <View style={styles.videoContainer}>
-        <VideoScreen />
-
-        {/* Back Button */}
+      <View style={styles.buttonStyles}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Feather name="arrow-left" size={24} color={colors.text} />
+          <Feather name="arrow-left" size={26} color={colors.icon} />
         </TouchableOpacity>
 
-        {/* Share Button */}
         <TouchableOpacity style={styles.shareButton}>
-          <Feather name="share-2" size={24} color={colors.text} />
+          <Feather name="share-2" size={24} color={colors.icon} />
         </TouchableOpacity>
-
-        <Text style={[styles.duration, { color: colors.text }]}>
-          {movieDetails.duration}
-        </Text>
       </View>
+
+      <VideoScreen />
+
+      <Text style={[styles.duration, { color: colors.text }]}>
+        {movieDetails.duration}
+      </Text>
 
       {/* Movie Info */}
       <View style={[styles.content, { backgroundColor: colors.background }]}>
@@ -135,31 +132,32 @@ const styles = StyleSheet.create({
   },
 
   videoContainer: {
-    height: 420,
-    position: "relative",
+    // height: 420,
+    // position: "relative",
   },
 
-  video: {
-    width: "100%",
-    height: "100%",
+  // video: {
+  //   width: "100%",
+  //   height: "100%",
+  // },
+  buttonStyles: {
+    marginBottom: 48,
   },
 
   backButton: {
     position: "absolute",
-    top: 50,
     left: 20,
     padding: 8,
     borderRadius: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
 
   shareButton: {
     position: "absolute",
-    top: 50,
     right: 20,
     padding: 8,
     borderRadius: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
 
   icon: {
@@ -182,12 +180,15 @@ const styles = StyleSheet.create({
   },
 
   duration: {
-    position: "absolute",
-    right: 20,
-    bottom: 20,
+    // position: "absolute",
+    // zIndex: 10,
+    // right: 20,
+    // bottom: 20,
     fontSize: 16,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    paddingHorizontal: 10,
+    margin: 8,
+    alignSelf: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
   },

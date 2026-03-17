@@ -15,7 +15,7 @@ export default function SearchScreen({ data = [], onResults }) {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(query);
-    }, 400);
+    }, 500);
 
     return () => clearTimeout(handler);
   }, [query]);

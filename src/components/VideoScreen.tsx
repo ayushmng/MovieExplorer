@@ -1,9 +1,11 @@
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, Dimensions } from "react-native";
 
 const videoSource =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+
+const screenWidth = Dimensions.get("screen").width;
 
 export default function VideoScreen() {
   const player = useVideoPlayer(videoSource, (player) => {
@@ -23,7 +25,7 @@ export default function VideoScreen() {
         allowsFullscreen
         allowsPictureInPicture
       />
-      <View style={styles.controlsContainer}>
+      {/* <View style={styles.controlsContainer}>
         <Button
           title={isPlaying ? "Pause" : "Play"}
           onPress={() => {
@@ -34,7 +36,7 @@ export default function VideoScreen() {
             }
           }}
         />
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -42,13 +44,11 @@ export default function VideoScreen() {
 const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
-    padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 50,
   },
   video: {
-    width: 350,
+    width: screenWidth, //350
     height: 275,
   },
   controlsContainer: {

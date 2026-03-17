@@ -1,86 +1,135 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
 } from "react-native";
-import { getStars } from "../utils/ratingUtils";
-import { MovieCarouselProps } from "../types/movie";
-import { useTheme } from "../themes";
+import Carousel from "react-native-reanimated-carousel";
+import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "../hooks/useTheme";
 
-export const MovieCarousel = ({ title, data }: MovieCarouselProps) => {
-  const { colors, theme, toggleTheme } = useTheme();
+export const MovieCarousel = ({ data }) => {
+  const { width } = Dimensions.get("window");
+  const navigation = useNavigation();
+  const { colors } = useTheme();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <View style={styles.section}>
-      <TouchableOpacity style={styles.sectionHeader}>
-        <Text style={[styles.sectionTitle, { color: colors.text }]}>
-          {title}
-        </Text>
-        <MaterialIcons
-          name="keyboard-arrow-right"
-          size={28}
-          color={colors.icon}
-        />
-      </TouchableOpacity>
-
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
+    <View>
+      <Carousel
+        loop
+        width={width}
+        height={200}
+        autoPlay
+        autoPlayInterval={3000}
         data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.movieCard}>
-            <Image source={{ uri: item.image }} style={styles.movieImage} />
-            <Text
-              numberOfLines={1}
-              style={[styles.movieTitle, { color: colors.text }]}
+        onSnapToItem={(index) => setActiveIndex(index)}
+        scrollAnimationDuration={1000}
+        renderItem={({ item: movie }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MovieDetails")}
+            style={[styles.featureCard, { alignSelf: "center" }]}
+          >
+            <Image source={{ uri: movie.image }} style={styles.featureImage} />
+
+            <View
+              style={[
+                styles.featureOverlay,
+                { backgroundColor: colors.overlay },
+              ]}
             >
-              {item.title}
-            </Text>
-            <Text style={styles.rating}>{getStars(item.rating)}</Text>
-          </View>
+              <Text style={[styles.featureTitle, { color: colors.text }]}>
+                {movie.title}
+              </Text>
+              <Text
+                style={[styles.featureGenre, { color: colors.textSecondary }]}
+              >
+                {movie.genre}
+              </Text>
+              <Text style={[styles.featureMeta, { color: colors.textMuted }]}>
+                {movie.duration} • {movie.language}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={[styles.playButton, { backgroundColor: colors.accent }]}
+            >
+              <Text style={[styles.playIcon, { color: colors.text }]}>▶</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
         )}
       />
+
+      <View style={styles.dotsContainer}>
+        {data.map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.dot,
+              {
+                backgroundColor:
+                  index === activeIndex ? colors.accent : colors.textMuted,
+              },
+            ]}
+          />
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  section: {
-    marginTop: 25,
+  featureCard: {
+    width: 340,
+    height: 170,
+    borderRadius: 15,
+    overflow: "hidden",
   },
-  sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  featureImage: {
+    width: "100%",
+    height: "100%",
   },
-  sectionTitle: {
-    color: "#fff",
+  featureOverlay: {
+    position: "absolute",
+    bottom: 10,
+    left: 10,
+    right: 10,
+    padding: 10,
+    borderRadius: 8,
+  },
+  featureTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    marginLeft: 20,
-    marginBottom: 15,
   },
-  movieCard: {
-    width: 120,
-    marginLeft: 20,
-  },
-  movieImage: {
-    width: 120,
-    height: 170,
-    borderRadius: 12,
-  },
-  movieTitle: {
-    color: "#fff",
-    paddingVertical: 6,
-    marginTop: 8,
-  },
-  rating: {
-    color: "gold",
+  featureGenre: {
     fontSize: 12,
+  },
+  featureMeta: {
+    fontSize: 11,
+  },
+  playButton: {
+    position: "absolute",
+    right: 15,
+    bottom: 15,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  playIcon: { color: "black", fontSize: 18, left: 1 },
+  dotsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 4,
   },
 });

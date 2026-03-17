@@ -1,14 +1,36 @@
 export const featuredMovies = [
   {
     id: "1",
-    title: "Rima",
+    title: "Under Paris",
     genre: "Drama, Horror, Mystery & Thriller",
     date: "15 March, 2020",
     duration: "1h 30min",
     language: "Arabic",
-    rating: 4.7,
+    rating: 3.7,
     image:
-      "https://a.ltrbxd.com/resized/film-poster/8/6/4/2/2/1/864221-rima-0-230-0-345-crop.jpg",
+      "https://m.media-amazon.com/images/M/MV5BMDM5ODBiN2ItOTk4Yi00NzgyLWE2YTktYzhjYTc2ODE4ZTE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+  },
+  {
+    id: "2",
+    title: "Damsel",
+    genre: "Mystery & Thriller",
+    date: "15 March, 2020",
+    duration: "2h 05min",
+    language: "English",
+    rating: 4.2,
+    image:
+      "https://m.media-amazon.com/images/M/MV5BZTAzODc1ZjUtNGQwZS00YTc2LTliNzQtMDdlNzllNmU5Yzk4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+  },
+  {
+    id: "3",
+    title: "Pandora",
+    genre: "SciFi & Thriller",
+    date: "15 March, 2020",
+    duration: "1h 58min",
+    language: "French",
+    rating: 4.5,
+    image:
+      "https://m.media-amazon.com/images/M/MV5BNzNmMjJjM2ItOGVlNy00ZDQ2LTkzMDMtOGEyNzBjNmVjNzU3XkEyXkFqcGc@._V1_.jpg",
   },
 ];
 

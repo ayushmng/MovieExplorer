@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StatusBar } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../themes";
 import AppNavigator from "../navigation/AppNavigator";
 
@@ -8,14 +8,15 @@ export default function RootLayout() {
   const { colors, theme } = useTheme();
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <SafeAreaProvider>
       <StatusBar
         barStyle={theme === "dark" ? "light-content" : "dark-content"}
         backgroundColor={colors.background}
       />
-      <SafeAreaProvider>
+
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
         <AppNavigator />
-      </SafeAreaProvider>
-    </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
