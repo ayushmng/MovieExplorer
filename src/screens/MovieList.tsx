@@ -94,6 +94,7 @@ const MovieList = () => {
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={renderFooter}
         contentContainerStyle={styles.contentContainerStyle}
       />
     </View>

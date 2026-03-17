@@ -9,6 +9,7 @@ import {
   ScrollView,
   Share,
   Alert,
+  Linking,
 } from "react-native";
 import VideoScreen from "../components/VideoScreen";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -37,8 +38,17 @@ export default function MovieDetailsScreen() {
   const liked = isFavorite(data.id);
 
   const animationRef = useRef<LottieView>(null);
-  const { title, description, duration, genre, rating, cast, age, image } =
-    data;
+  const {
+    title,
+    description,
+    duration,
+    genre,
+    rating,
+    cast,
+    age,
+    image,
+    video,
+  } = data;
 
   const shareApp = async () => {
     try {
@@ -56,6 +66,16 @@ export default function MovieDetailsScreen() {
       }
     } catch (error: any) {
       Alert.alert(error.message);
+    }
+  };
+
+  const handlePress = async (url: string) => {
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      console.log("Can't open URL:", url);
     }
   };
 
@@ -95,7 +115,7 @@ export default function MovieDetailsScreen() {
         </TouchableOpacity>
       </View>
 
-      <VideoScreen />
+      <VideoScreen videoUrl={video} />
 
       <Text
         style={[
@@ -175,6 +195,7 @@ export default function MovieDetailsScreen() {
           )}
         />
         <CustomButton
+          onPress={() => handlePress(image)}
           text={Strings.button.openImdb}
           containerStyle={styles.button}
         />

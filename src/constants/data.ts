@@ -24,7 +24,8 @@ export const featuredMovies = [
       description:
         "To save Paris from a bloodbath, a grieving scientist is forced to face her tragic past when a giant shark appears in the Seine.",
       age: "+16",
-      video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+      video:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       cast: [
         {
           id: "101",
@@ -78,7 +79,8 @@ export const featuredMovies = [
       description:
         "A young woman's marriage to a charming prince turns into a fierce fight for survival when she's offered up as a sacrifice to a fire-breathing dragon.",
       age: "+13",
-      video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+      video:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       cast: [
         {
           id: "201",
@@ -113,7 +115,8 @@ export const featuredMovies = [
       description:
         "In a post-apocalyptic world, a young woman must protect a mysterious object that holds the key to humanity's survival.",
       age: "+15",
-      video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+      video:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
       cast: [
         {
           id: "201",
@@ -153,7 +156,8 @@ export const moviesList: Movie[] = [
     description:
       "To save Paris from a bloodbath, a grieving scientist is forced to face her tragic past when a giant shark appears in the Seine.",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     cast: [
       {
         id: "101",
@@ -196,7 +200,8 @@ export const moviesList: Movie[] = [
     description:
       "A young woman's marriage to a charming prince turns into a fierce fight for survival when she's offered up as a sacrifice to a fire-breathing dragon.",
     age: "+13",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     cast: [
       {
         id: "201",
@@ -219,8 +224,9 @@ export const moviesList: Movie[] = [
     language: "French",
     description:
       "In a post-apocalyptic world, a young woman must protect a mysterious object that holds the key to humanity's survival.",
-    age: "+15",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    age: "+16",
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     cast: [
       {
         id: "201",
@@ -278,7 +284,8 @@ export const moviesList: Movie[] = [
     duration: "2h 10min",
     language: "English",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     description:
       "Two strangers get accidentally locked in a quirky local museum overnight during a blackout. Armed only with flashlights and a shared bottle of wine, they spend the night curating their own life stories among the dusty artifacts.",
     cast: [
@@ -315,7 +322,8 @@ export const moviesList: Movie[] = [
     duration: "1h 48min",
     language: "English",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
     description:
       "Following a sudden lunar base decompression, a lone technician has ninety minutes of air to traverse three miles of cratered terrain. With her radio malfunctioning, her only guide is the rhythmic, terrifying sound of her own failing life support.",
     cast: [
@@ -341,7 +349,8 @@ export const moviesList: Movie[] = [
     description:
       "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
     age: "+13",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     cast: [
       {
         id: "201",
@@ -377,7 +386,8 @@ export const moviesList: Movie[] = [
     description:
       "Ocean's Eleven is a 2001 American heist comedy film directed by Steven Soderbergh from a screenplay by Ted Griffin. The first installment in the Ocean's film trilogy, it is a remake of the 1960 Rat Pack film. ",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
     cast: [
       {
         id: "201",
@@ -413,7 +423,8 @@ export const moviesList: Movie[] = [
     description:
       "Mission: Impossible – The Final Reckoning is a 2025 American action spy film directed by Christopher McQuarrie from a screenplay he co-wrote with Erik Jendresen.[7][8] It is the direct sequel to Mission: Impossible – Dead Reckoning Part One[b] (2023) and the eighth installment in the Mission: Impossible film series. The ensemble cast includes Tom Cruise (in his final portrayal of Ethan Hunt),[10] Hayley Atwell, Ving Rhames, Simon Pegg, Henry Czerny and Angela Bassett.[11][12] In the film, Hunt and his IMF team continue their mission to prevent the Entity, a rogue artificial intelligence, from destroying all of humanity.",
     age: "+13",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     cast: [
       {
         id: "201",
@@ -485,7 +496,8 @@ export const moviesList: Movie[] = [
     description:
       "Heart of Stone is a 2023 American spy action thriller film directed by Tom Harper from a screenplay by Greg Rucka and Allison Schroeder and a story by Rucka.[4] The film stars Gal Gadot, Jamie Dornan, Alia Bhatt (in her Hollywood debut), Sophie Okonedo, and Matthias Schweighöfer. It follows Rachel, a global intelligence operative embarking on a dangerous mission to protect a mysterious AI system known as The Heart. She is tasked by the peacekeeping operation known as Charter to keep the object safe from falling into enemy hands.",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     cast: [
       {
         id: "201",
@@ -520,7 +532,8 @@ export const moviesList: Movie[] = [
     language: "English",
     description: `The Phoenician Scheme is a 2025 espionage black comedy thriller film produced, written and directed by Wes Anderson from a story he conceived with Roman Coppola. The film features an ensemble cast that includes Benicio del Toro, Mia Threapleton, Michael Cera, Riz Ahmed, Tom Hanks, Bryan Cranston, Mathieu Amalric, Richard Ayoade, Jeffrey Wright, Scarlett Johansson, Benedict Cumberbatch, Rupert Friend, Hope Davis, F. Murray Abraham, Charlotte Gainsbourg, Willem Dafoe, and Bill Murray. It tells the story of a ruthless businessman (del Toro) as he seeks to reconcile with his estranged daughter (Threapleton) and complete an ambitious infrastructure project in Phoenicia. The film was produced internationally between the United States and Germany by Anderson's company American Empirical Pictures and Steven Rales's company Indian Paintbrush.`,
     age: "+18",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     cast: [
       {
         id: "201",
@@ -578,7 +591,8 @@ export const moviesList: Movie[] = [
     duration: "1h 48min",
     language: "English",
     age: "+16",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
     description: `The Aviator is a 2004 epic biographical drama film directed by Martin Scorsese and written by John Logan. It stars Leonardo DiCaprio as Howard Hughes, Cate Blanchett as Katharine Hepburn, and Kate Beckinsale as Ava Gardner. The supporting cast features Ian Holm, John C. Reilly, Alec Baldwin, Jude Law, Gwen Stefani, Kelli Garner, Matt Ross, Willem Dafoe, Alan Alda and Edward Herrmann.`,
     cast: [
       {
@@ -602,7 +616,8 @@ export const moviesList: Movie[] = [
     language: "English",
     description: `The Prestige is a 2006 science fiction psychological thriller film directed by Christopher Nolan, who co-wrote the screenplay with his brother Jonathan Nolan, based on the 1995 novel by Christopher Priest. Set in Victorian London, the film stars Hugh Jackman and Christian Bale as rival stage magicians, Robert Angier and Alfred Borden, whose escalating competition to create a superior teleportation illusion leads to obsession, deception, and tragedy.`,
     age: "+13",
-    video: require("../../assets/video/The_Conjuring_Last Rites_Trailer.mp4"),
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     cast: [
       {
         id: "201",

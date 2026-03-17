@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -25,6 +25,16 @@ type SectionItem =
 export default function MainScreen() {
   const navigation = useNavigation();
   const { colors, theme, toggleTheme } = useTheme();
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    console.log("Fetching data...");
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1500);
+  };
 
   const sections: SectionItem[] = [
     { type: "header" },
@@ -95,6 +105,8 @@ export default function MainScreen() {
       showsVerticalScrollIndicator={false}
       data={sections}
       stickyHeaderIndices={[0]}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
       keyExtractor={(item, index) => index.toString()}
       contentContainerStyle={styles.contentContainerStyle}
       style={[styles.container, { backgroundColor: colors.background }]}

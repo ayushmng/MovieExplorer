@@ -2,20 +2,23 @@ import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { StyleSheet, View, Button, Dimensions } from "react-native";
 
-const videoSource =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+interface VideoProps {
+  videoUrl: string;
+}
 
 const screenWidth = Dimensions.get("screen").width;
 
-export default function VideoScreen() {
-  const player = useVideoPlayer(videoSource, (player) => {
+export default function VideoScreen({
+  videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+}: VideoProps) {
+  const player = useVideoPlayer(videoUrl, (player) => {
     player.loop = true;
     player.play();
   });
 
-  const { isPlaying } = useEvent(player, "playingChange", {
-    isPlaying: player.playing,
-  });
+  // const { isPlaying } = useEvent(player, "playingChange", {
+  //   isPlaying: player.playing,
+  // });
 
   return (
     <View style={styles.contentContainer}>
