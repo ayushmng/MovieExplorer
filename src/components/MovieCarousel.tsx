@@ -10,8 +10,9 @@ import {
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "../hooks/useTheme";
+import { FeaturedMovie, Movie } from "../types/movie";
 
-export const MovieCarousel = ({ data }) => {
+export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
   const { width } = Dimensions.get("window");
   const navigation = useNavigation();
   const { colors } = useTheme();
@@ -28,12 +29,14 @@ export const MovieCarousel = ({ data }) => {
         data={data}
         onSnapToItem={(index) => setActiveIndex(index)}
         scrollAnimationDuration={1000}
-        renderItem={({ item: movie }) => (
+        renderItem={({ item }: { item: FeaturedMovie }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate("MovieDetails")}
+            onPress={() =>
+              navigation.navigate("MovieDetails", { data: item.details })
+            }
             style={[styles.featureCard, { alignSelf: "center" }]}
           >
-            <Image source={{ uri: movie.image }} style={styles.featureImage} />
+            <Image source={{ uri: item.image }} style={styles.featureImage} />
 
             <View
               style={[
@@ -42,15 +45,15 @@ export const MovieCarousel = ({ data }) => {
               ]}
             >
               <Text style={[styles.featureTitle, { color: colors.text }]}>
-                {movie.title}
+                {item.title}
               </Text>
               <Text
                 style={[styles.featureGenre, { color: colors.textSecondary }]}
               >
-                {movie.genre}
+                {item.genre}
               </Text>
               <Text style={[styles.featureMeta, { color: colors.textMuted }]}>
-                {movie.duration} • {movie.language}
+                {item.duration} • {item.language}
               </Text>
             </View>
 

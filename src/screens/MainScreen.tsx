@@ -14,10 +14,24 @@ import { featuredMovies, moviesList } from "../constants/data";
 import { Strings } from "../constants/strings";
 import { MovieSection } from "../components/MovieSection";
 import { MovieCarousel } from "../components/MovieCarousel";
+import { FeaturedMovie, Movie } from "../types/movie";
+
+type SectionItem =
+  | { type: "header" }
+  | { type: "featured"; data: FeaturedMovie[] }
+  | { type: "myList"; data: Movie[] }
+  | { type: "recommended"; data: Movie[] };
 
 export default function MainScreen() {
   const navigation = useNavigation();
   const { colors, theme, toggleTheme } = useTheme();
+
+  const sections: SectionItem[] = [
+    { type: "header" },
+    { type: "featured", data: featuredMovies },
+    { type: "myList", data: moviesList },
+    { type: "recommended", data: moviesList },
+  ];
 
   const StickyHeader = () => (
     <View style={{ backgroundColor: colors.background }}>
@@ -74,15 +88,10 @@ export default function MainScreen() {
   return (
     <FlatList
       style={[styles.container, { backgroundColor: colors.background }]}
-      data={[
-        { type: "header" },
-        { type: "featured", data: featuredMovies },
-        { type: "myList", data: moviesList },
-        { type: "recommended", data: moviesList },
-      ]}
+      data={sections}
       keyExtractor={(item, index) => index.toString()}
       stickyHeaderIndices={[0]}
-      renderItem={({ item }) => {
+      renderItem={({ item }: { item: SectionItem }) => {
         switch (item.type) {
           case "header":
             return <StickyHeader />;

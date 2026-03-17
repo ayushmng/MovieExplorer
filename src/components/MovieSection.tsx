@@ -9,15 +9,20 @@ import {
   View,
 } from "react-native";
 import { getStars } from "../utils/ratingUtils";
-import { MovieCarouselProps } from "../types/movie";
+import { Movie, MovieCarouselProps, MovieSectionProps } from "../types/movie";
 import { useTheme } from "../themes";
+import { useNavigation } from "@react-navigation/native";
 
-export const MovieSection = ({ title, data }: MovieCarouselProps) => {
+export const MovieSection = ({ title, data }: MovieSectionProps) => {
+  const navigation = useNavigation();
   const { colors } = useTheme();
 
   return (
     <View style={styles.section}>
-      <TouchableOpacity style={styles.sectionHeader}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("MovieList", { screenTitle: title })}
+        style={styles.sectionHeader}
+      >
         <Text style={[styles.sectionTitle, { color: colors.text }]}>
           {title}
         </Text>
@@ -32,9 +37,12 @@ export const MovieSection = ({ title, data }: MovieCarouselProps) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.movieCard}>
+        keyExtractor={(item: Movie) => item.id}
+        renderItem={({ item }: { item: Movie }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MovieDetails", { data: item })}
+            style={styles.movieCard}
+          >
             <Image source={{ uri: item.image }} style={styles.movieImage} />
             <Text
               numberOfLines={1}
@@ -43,7 +51,7 @@ export const MovieSection = ({ title, data }: MovieCarouselProps) => {
               {item.title}
             </Text>
             <Text style={styles.rating}>{getStars(item.rating)}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
