@@ -25,7 +25,10 @@ export default function CardComponent({ item }) {
 
           <View style={styles.ratingContainer}>
             <Text style={[styles.rating, { color: colors.accent }]}>
-              ⭐ {item.rating}
+              ⭐{" "}
+              {item.rating && item?.rating?.toString().length === 1
+                ? `${item?.rating}.0`
+                : item?.rating}
             </Text>
 
             <Text

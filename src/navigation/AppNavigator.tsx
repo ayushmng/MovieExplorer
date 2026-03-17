@@ -7,6 +7,7 @@ import MovieDetailsScreen from "../screens/MovieDetailsScreen";
 import SearchScreen from "../screens/SearchScreen";
 import { useTheme } from "../themes";
 import MovieList from "../screens/MovieList";
+import Favorites from "../screens/Favorites";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function AppNavigator() {
         <Stack.Screen name="MovieDetails" component={MovieDetailsScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="MovieList" component={MovieList} />
+        <Stack.Screen name="Favorites" component={Favorites} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -17,6 +17,8 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
   const navigation = useNavigation();
   const { colors } = useTheme();
 
+  const shuffledData = [...data].sort(() => Math.random() - 0.5).slice(0, 5);
+
   return (
     <View style={styles.section}>
       <TouchableOpacity
@@ -36,7 +38,8 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={data}
+        data={shuffledData}
+        initialNumToRender={5}
         keyExtractor={(item: Movie) => item.id}
         renderItem={({ item }: { item: Movie }) => (
           <TouchableOpacity

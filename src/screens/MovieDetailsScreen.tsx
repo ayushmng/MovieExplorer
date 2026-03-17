@@ -17,6 +17,7 @@ import { Feather, FontAwesome } from "@expo/vector-icons";
 import CustomButton from "../components/button/CustomButton";
 import { Strings } from "../constants/strings";
 import LottieView from "lottie-react-native";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 interface TagProps {
   text: string;
@@ -30,8 +31,10 @@ export default function MovieDetailsScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
-  const [liked, setLiked] = useState(false);
   const [expanded, setExpanded] = useState(false);
+
+  const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const liked = isFavorite(data.id);
 
   const animationRef = useRef<LottieView>(null);
   const { title, description, duration, genre, rating, cast, age, image } =
@@ -57,8 +60,11 @@ export default function MovieDetailsScreen() {
   };
 
   const toggleAnimation = () => {
-    setLiked((prev) => !prev);
-    if (!liked) {
+    const wasLiked = isFavorite(data.id);
+
+    toggleFavorite(data);
+
+    if (!wasLiked) {
       animationRef.current?.play();
     }
   };
@@ -114,14 +120,20 @@ export default function MovieDetailsScreen() {
             textColor={colors.text}
           />
           <Tag
-            text={`⭐ ${rating}`}
+            text={`⭐ ${rating && rating?.toString()?.length === 1 ? `${rating}.0` : rating}`}
             backgroundColor={colors.card}
             textColor={colors.text}
           />
         </ScrollView>
 
         <View style={styles.heartWrapper}>
-          <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
+          <Text
+            numberOfLines={2}
+            ellipsizeMode="tail"
+            style={[styles.title, { color: colors.text }]}
+          >
+            {title}
+          </Text>
           <TouchableOpacity style={styles.heart} onPress={toggleAnimation}>
             {liked ? (
               <LottieView
@@ -137,8 +149,7 @@ export default function MovieDetailsScreen() {
         </View>
 
         <Text style={[styles.description, { color: colors.textSecondary }]}>
-          {expanded ? description : description.slice(0, 110)}
-
+          {expanded ? description : `${description.slice(0, 100)}...`}
           <Text
             style={[styles.showMore, { color: colors.accent }]}
             onPress={() => setExpanded(!expanded)}
@@ -240,9 +251,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
+    flex: 1,
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 15,
+    marginTop: 16,
+    marginRight: 8,
   },
   description: {
     marginTop: 10,

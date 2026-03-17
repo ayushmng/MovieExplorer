@@ -69,7 +69,12 @@ export default function MainScreen() {
               onPress={toggleTheme}
             />
           )}
-          <Feather name="bookmark" size={22} color={colors.toggleIcon} />
+          <Feather
+            name="bookmark"
+            size={22}
+            color={colors.toggleIcon}
+            onPress={() => navigation.navigate("Favorites")}
+          />
         </View>
       </View>
       {/* Search */}
@@ -88,10 +93,11 @@ export default function MainScreen() {
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      style={[styles.container, { backgroundColor: colors.background }]}
       data={sections}
-      keyExtractor={(item, index) => index.toString()}
       stickyHeaderIndices={[0]}
+      keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.contentContainerStyle}
+      style={[styles.container, { backgroundColor: colors.background }]}
       renderItem={({ item }: { item: SectionItem }) => {
         switch (item.type) {
           case "header":
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
+  contentContainerStyle: { paddingBottom: 50 },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",

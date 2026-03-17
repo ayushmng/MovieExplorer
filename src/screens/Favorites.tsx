@@ -1,59 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
   FlatList,
-  Image,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
-import { moviesList } from "../constants/data";
 import { useTheme } from "../themes";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Strings } from "../constants/strings";
 import CardComponent from "../components/card/CardComponent";
 import { Movie } from "../types/movie";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const IMAGE_WIDTH = 120;
 const IMAGE_HEIGHT = 180;
 
-const MovieList = () => {
-  const route = useRoute();
-  const { screenTitle } = route?.params;
-  const navigation = useNavigation();
+const Favorites = () => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
 
-  const PAGE_SIZE = 5;
-
-  const [visibleMovies, setVisibleMovies] = useState(
-    moviesList.slice(0, PAGE_SIZE),
-  );
-
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-
-  const loadMore = () => {
-    if (loading) return;
-
-    const start = page * PAGE_SIZE;
-    const end = start + PAGE_SIZE;
-
-    const newData = moviesList.slice(start, end);
-
-    if (newData.length > 0) {
-      setLoading(true);
-
-      setTimeout(() => {
-        setVisibleMovies((prev) => [...prev, ...newData]);
-        setPage((prev) => prev + 1);
-        setLoading(false);
-      }, 500);
-    }
-  };
-
-  console.log("Current page: ", page);
+  const { favorites } = useFavoritesStore();
 
   const StickyHeader = () => (
     <View style={styles.header}>
@@ -64,7 +32,7 @@ const MovieList = () => {
         <Feather name="arrow-left" size={26} color={colors.icon} />
       </TouchableOpacity>
       <Text style={[styles.titleText, { color: colors.text }]}>
-        {screenTitle ?? Strings.screen.movieList}
+        {Strings.screen.favorites}
       </Text>
     </View>
   );
@@ -73,32 +41,31 @@ const MovieList = () => {
     <CardComponent item={item} />
   );
 
-  const renderFooter = () => {
-    if (!loading) return null;
-
-    return (
-      <View style={{ paddingVertical: 20 }}>
-        <ActivityIndicator size="small" color={colors.accent} />
-      </View>
-    );
-  };
+  const renderEmptyState = () => (
+    <View style={styles.emptyContainer}>
+      <Feather name="search" size={50} color={colors.textMuted} />
+      <Text style={[styles.emptyText, { color: colors.textMuted }]}>
+        No favorites found
+      </Text>
+    </View>
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <StickyHeader />
       <FlatList
-        data={visibleMovies}
+        data={favorites}
         renderItem={renderMovieItem}
-        initialNumToRender={PAGE_SIZE}
         keyExtractor={(item) => item.id}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={renderEmptyState}
         contentContainerStyle={styles.contentContainerStyle}
       />
     </View>
   );
 };
+
+export default Favorites;
 
 const styles = StyleSheet.create({
   container: {
@@ -113,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   titleText: { fontSize: 22, fontWeight: "bold" },
-  contentContainerStyle: { paddingVertical: 8 },
+  contentContainerStyle: { flex: 1, paddingVertical: 8 },
   itemContainer: {
     flexDirection: "row",
     padding: 10,
@@ -148,6 +115,16 @@ const styles = StyleSheet.create({
     padding: 8,
     alignSelf: "flex-start",
   },
-});
+  emptyContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-export default MovieList;
+  emptyText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: "#aaa",
+    textAlign: "center",
+  },
+});

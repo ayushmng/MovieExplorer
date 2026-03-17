@@ -3,8 +3,9 @@ export const Strings = {
     welcome_back: "Welcome Back",
   },
   screen: {
-    movieList: "Movies List",
     search: "Search",
+    favorites: "Favorites",
+    movieList: "Movies List",
   },
   user: {
     name: "Ayush Katuwal",

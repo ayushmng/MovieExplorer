@@ -58,6 +58,9 @@ export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
             </View>
 
             <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("MovieDetails", { data: item.details })
+              }
               style={[styles.playButton, { backgroundColor: colors.accent }]}
             >
               <Text style={[styles.playIcon, { color: colors.text }]}>▶</Text>
