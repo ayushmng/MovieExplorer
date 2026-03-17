@@ -4,6 +4,7 @@ export const Strings = {
   },
   screen: {
     movieList: "Movies List",
+    search: "Search",
   },
   user: {
     name: "Ayush Katuwal",

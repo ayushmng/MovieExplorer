@@ -12,6 +12,8 @@ import { useTheme } from "../themes";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Strings } from "../constants/strings";
+import CardComponent from "../components/card/CardComponent";
+import { Movie } from "../types/movie";
 
 const IMAGE_WIDTH = 120;
 const IMAGE_HEIGHT = 180;
@@ -36,21 +38,8 @@ const MovieList = () => {
     </View>
   );
 
-  const renderItem = ({ item }: { item: (typeof moviesList)[0] }) => (
-    <View style={[styles.itemContainer, { backgroundColor: colors.card }]}>
-      {/* Movie Image */}
-      <Image source={{ uri: item.image }} style={styles.image} />
-
-      {/* Movie Details */}
-      <View style={styles.detailsContainer}>
-        <Text style={[styles.title, { color: colors.textSecondary }]}>
-          {item.title}
-        </Text>
-        <Text style={[styles.rating, { color: colors.textMuted }]}>
-          Rating: {item.rating.toFixed(1)}
-        </Text>
-      </View>
-    </View>
+  const renderMovieItem = ({ item }: { item: Movie }) => (
+    <CardComponent item={item} />
   );
 
   return (
@@ -58,8 +47,9 @@ const MovieList = () => {
       <StickyHeader />
       <FlatList
         data={moviesList}
-        renderItem={renderItem}
+        renderItem={renderMovieItem}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainerStyle}
       />
     </View>
@@ -69,9 +59,15 @@ const MovieList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 12,
     backgroundColor: "#fff",
   },
-  header: { gap: 28, flexDirection: "row", alignItems: "center" },
+  header: {
+    gap: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
   titleText: { fontSize: 22, fontWeight: "bold" },
   contentContainerStyle: { paddingVertical: 8 },
   itemContainer: {
@@ -105,7 +101,6 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   backButton: {
-    left: 20,
     padding: 8,
     alignSelf: "flex-start",
   },

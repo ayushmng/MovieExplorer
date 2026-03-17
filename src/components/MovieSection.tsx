@@ -53,6 +53,7 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
             <Text style={styles.rating}>{getStars(item.rating)}</Text>
           </TouchableOpacity>
         )}
+        style={styles.cardWrapper}
       />
     </View>
   );
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 15,
   },
+  cardWrapper: { marginRight: 20 },
   movieCard: {
     width: 120,
     marginLeft: 20,

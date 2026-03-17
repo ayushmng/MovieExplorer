@@ -79,7 +79,7 @@ export default function MainScreen() {
       >
         <Feather name="search" size={20} color={colors.textMuted} />
         <Text style={[styles.searchText, { color: colors.textMuted }]}>
-          Search
+          {Strings.screen.search}
         </Text>
       </TouchableOpacity>
     </View>
@@ -87,6 +87,7 @@ export default function MainScreen() {
 
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       style={[styles.container, { backgroundColor: colors.background }]}
       data={sections}
       keyExtractor={(item, index) => index.toString()}
@@ -155,7 +156,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 4,
-    marginBottom: 24,
+    marginTop: 8,
+    marginBottom: 32,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    elevation: 4,
   },
 
   searchText: {

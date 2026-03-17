@@ -7,13 +7,16 @@ import {
   Image,
   FlatList,
   ScrollView,
+  Share,
+  Alert,
 } from "react-native";
 import VideoScreen from "../components/VideoScreen";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from "../hooks/useTheme";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import CustomButton from "../components/button/CustomButton";
 import { Strings } from "../constants/strings";
+import LottieView from "lottie-react-native";
 
 interface TagProps {
   text: string;
@@ -27,8 +30,38 @@ export default function MovieDetailsScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
+  const [liked, setLiked] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const { title, description, duration, genre, rating, cast, age } = data;
+
+  const animationRef = useRef<LottieView>(null);
+  const { title, description, duration, genre, rating, cast, age, image } =
+    data;
+
+  const shareApp = async () => {
+    try {
+      const result = await Share.share({
+        message: image,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      Alert.alert(error.message);
+    }
+  };
+
+  const toggleAnimation = () => {
+    setLiked((prev) => !prev);
+    if (!liked) {
+      animationRef.current?.play();
+    }
+  };
 
   const Tag = ({ text, backgroundColor, textColor }: TagProps) => {
     return (
@@ -40,6 +73,7 @@ export default function MovieDetailsScreen() {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       style={[styles.container, { backgroundColor: colors.background }]}
     >
       <View style={styles.buttonStyles}>
@@ -50,20 +84,27 @@ export default function MovieDetailsScreen() {
           <Feather name="arrow-left" size={26} color={colors.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.shareButton}>
+        <TouchableOpacity onPress={shareApp} style={styles.shareButton}>
           <Feather name="share-2" size={24} color={colors.icon} />
         </TouchableOpacity>
       </View>
 
       <VideoScreen />
 
-      <Text style={[styles.duration, { color: colors.text }]}>{duration}</Text>
+      <Text
+        style={[
+          styles.duration,
+          { color: colors.text, backgroundColor: colors.card },
+        ]}
+      >
+        {duration}
+      </Text>
 
       {/* Movie Info */}
       <View style={[styles.content, { backgroundColor: colors.background }]}>
-        <View style={styles.tagsRow}>
+        <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           <Tag
-            text="+18"
+            text={age}
             backgroundColor={colors.card}
             textColor={colors.text}
           />
@@ -77,13 +118,23 @@ export default function MovieDetailsScreen() {
             backgroundColor={colors.card}
             textColor={colors.text}
           />
+        </ScrollView>
 
-          <TouchableOpacity style={styles.heart}>
-            <AntDesign name="heart" size={22} color={colors.accent} />
+        <View style={styles.heartWrapper}>
+          <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
+          <TouchableOpacity style={styles.heart} onPress={toggleAnimation}>
+            {liked ? (
+              <LottieView
+                ref={animationRef}
+                source={require("../../assets/animations/like_heart.json")}
+                style={styles.lottie}
+                loop={false}
+              />
+            ) : (
+              <FontAwesome name="heart-o" size={24} color={colors.accent} />
+            )}
           </TouchableOpacity>
         </View>
-
-        <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
 
         <Text style={[styles.description, { color: colors.textSecondary }]}>
           {expanded ? description : description.slice(0, 110)}
@@ -143,12 +194,13 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
   duration: {
+    marginTop: 12,
+    marginRight: 8,
     fontSize: 16,
-    margin: 8,
     alignSelf: "flex-end",
     backgroundColor: "rgba(0, 0, 0, 0.1)",
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 6,
     borderRadius: 6,
   },
   content: {
@@ -167,9 +219,25 @@ const styles = StyleSheet.create({
   tagText: {
     fontSize: 14,
   },
+  lottie: {
+    width: 120,
+    height: 120,
+  },
+  heartWrapper: {
+    flex: 1,
+    marginTop: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   heart: {
-    marginLeft: "auto",
+    top: 2,
+    right: 4,
     padding: 8,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     fontSize: 30,
@@ -190,12 +258,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   actorCard: {
-    width: 110,
-    marginRight: 15,
+    width: 120,
+    gap: 16,
+    marginRight: 16,
   },
   actorImage: {
-    width: 110,
-    height: 110,
+    width: 120,
+    height: 160,
     borderRadius: 12,
   },
   actorName: {

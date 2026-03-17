@@ -11,7 +11,7 @@ import MovieList from "../screens/MovieList";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
-  const { colors, theme } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <NavigationContainer>
@@ -28,6 +28,5 @@ export default function AppNavigator() {
         <Stack.Screen name="MovieList" component={MovieList} />
       </Stack.Navigator>
     </NavigationContainer>
-    // </View>
   );
 }

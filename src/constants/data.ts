@@ -30,27 +30,27 @@ export const featuredMovies = [
           id: "101",
           name: "Bérénice Bejo",
           image:
-            "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+            "https://images.saymedia-content.com/.image/t_share/MTc2Mjk3MjM3MDk2Mzc1NDg2/ruggedly-handsome-hollywood-actors.jpg",
           character: "Sofia",
         },
         {
           id: "102",
           name: "Nassim Lyes",
           image:
-            "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+            "https://m.media-amazon.com/images/M/MV5BNWFmNmI2NmYtNDUyYi00MDZhLTk0ZmEtODY0MmM5NGQxMWEwXkEyXkFqcGc@._V1_.jpg",
           character: "Adil",
         },
         {
           id: "103",
           name: "Bérénice Bejo",
           image:
-            "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+            "https://cdn1-production-images-kly.akamaized.net/ZkggvOEh8SVQ9IbOQ8fmNZ6iE_U=/1280x720/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4724741/original/098897300_1706063699-AP24015069683309.jpg",
         },
         {
           id: "104",
           name: "Nassim Lyes",
           image:
-            "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+            "https://m.media-amazon.com/images/M/MV5BZmI2ZjlkZWQtZWRiZS00MDMzLThmMjgtMDBiYjU1ZTdlODM4XkEyXkFqcGc@._V1_.jpg",
         },
       ],
     },
@@ -84,7 +84,7 @@ export const featuredMovies = [
           id: "201",
           name: "Millie Bobby Brown",
           image:
-            "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+            "https://m.media-amazon.com/images/M/MV5BZmI2ZjlkZWQtZWRiZS00MDMzLThmMjgtMDBiYjU1ZTdlODM4XkEyXkFqcGc@._V1_.jpg",
           character: "Elodie",
         },
       ],
@@ -119,20 +119,20 @@ export const featuredMovies = [
           id: "201",
           name: "Millie Bobby Brown",
           image:
-            "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+            "https://cdn1-production-images-kly.akamaized.net/ZkggvOEh8SVQ9IbOQ8fmNZ6iE_U=/1280x720/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4724741/original/098897300_1706063699-AP24015069683309.jpg",
           character: "Elodie",
         },
         {
           id: "202",
           name: "Bérénice Bejo",
           image:
-            "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+            "https://images.saymedia-content.com/.image/t_share/MTc2Mjk3MjM3MDk2Mzc1NDg2/ruggedly-handsome-hollywood-actors.jpg",
         },
         {
           id: "203",
           name: "Nassim Lyes",
           image:
-            "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+            "https://m.media-amazon.com/images/I/6114Bdv8DrL._AC_UF894,1000_QL80_.jpg",
         },
       ],
     },
@@ -159,27 +159,27 @@ export const moviesList: Movie[] = [
         id: "101",
         name: "Bérénice Bejo",
         image:
-          "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+          "https://www.shutterstock.com/image-photo/madeleine-mcgraw-los-angeles-premiere-600nw-2687891527.jpg",
         character: "Sofia",
       },
       {
         id: "102",
         name: "Nassim Lyes",
         image:
-          "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+          "https://m.media-amazon.com/images/I/6114Bdv8DrL._AC_UF894,1000_QL80_.jpg",
         character: "Adil",
       },
       {
         id: "103",
         name: "Bérénice Bejo",
         image:
-          "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+          "https://images.saymedia-content.com/.image/t_share/MTc2Mjk3MjM3MDk2Mzc1NDg2/ruggedly-handsome-hollywood-actors.jpg",
       },
       {
         id: "104",
         name: "Nassim Lyes",
         image:
-          "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+          "https://m.media-amazon.com/images/M/MV5BZmI2ZjlkZWQtZWRiZS00MDMzLThmMjgtMDBiYjU1ZTdlODM4XkEyXkFqcGc@._V1_.jpg",
       },
     ],
   },
@@ -202,7 +202,7 @@ export const moviesList: Movie[] = [
         id: "201",
         name: "Millie Bobby Brown",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+          "https://m.media-amazon.com/images/M/MV5BNWFmNmI2NmYtNDUyYi00MDZhLTk0ZmEtODY0MmM5NGQxMWEwXkEyXkFqcGc@._V1_.jpg",
         character: "Elodie",
       },
     ],
@@ -226,20 +226,20 @@ export const moviesList: Movie[] = [
         id: "201",
         name: "Millie Bobby Brown",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+          "https://m.media-amazon.com/images/M/MV5BZmI2ZjlkZWQtZWRiZS00MDMzLThmMjgtMDBiYjU1ZTdlODM4XkEyXkFqcGc@._V1_.jpg",
         character: "Elodie",
       },
       {
         id: "202",
         name: "Bérénice Bejo",
         image:
-          "https://image.tmdb.org/t/p/w500/jY4nS8NxVkg4CSkiqhSSjMBDlNI.jpg",
+          "https://m.media-amazon.com/images/I/6114Bdv8DrL._AC_UF894,1000_QL80_.jpg",
       },
       {
         id: "203",
         name: "Nassim Lyes",
         image:
-          "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+          "https://www.shutterstock.com/image-photo/madeleine-mcgraw-los-angeles-premiere-600nw-2687891527.jpg",
       },
     ],
   },
@@ -262,7 +262,7 @@ export const moviesList: Movie[] = [
         id: "201",
         name: "Millie Bobby Brown",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+          "https://m.media-amazon.com/images/M/MV5BNWFmNmI2NmYtNDUyYi00MDZhLTk0ZmEtODY0MmM5NGQxMWEwXkEyXkFqcGc@._V1_.jpg",
         character: "Elodie",
       },
     ],
@@ -283,23 +283,24 @@ export const moviesList: Movie[] = [
       "Two strangers get accidentally locked in a quirky local museum overnight during a blackout. Armed only with flashlights and a shared bottle of wine, they spend the night curating their own life stories among the dusty artifacts.",
     cast: [
       {
-        id: "201",
-        name: "Millie Bobby Brown",
+        id: "101",
+        name: "Bérénice Bejo",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
-        character: "Elodie",
+          "https://www.shutterstock.com/image-photo/madeleine-mcgraw-los-angeles-premiere-600nw-2687891527.jpg",
+        character: "Sofia",
       },
       {
-        id: "202",
-        name: "Léa Léviant",
+        id: "102",
+        name: "Nassim Lyes",
         image:
-          "https://image.tmdb.org/t/p/w500/dRbpHn9Ezg4QPGVE3Sk2rYZRk5v.jpg",
+          "https://m.media-amazon.com/images/I/6114Bdv8DrL._AC_UF894,1000_QL80_.jpg",
+        character: "Adil",
       },
       {
-        id: "203",
-        name: "Anne Marivin",
+        id: "103",
+        name: "Bérénice Bejo",
         image:
-          "https://image.tmdb.org/t/p/w500/2Wn9p8h4K0qHn4pWZ7dBDEuDfSU.jpg",
+          "https://images.saymedia-content.com/.image/t_share/MTc2Mjk3MjM3MDk2Mzc1NDg2/ruggedly-handsome-hollywood-actors.jpg",
       },
     ],
   },
@@ -322,7 +323,7 @@ export const moviesList: Movie[] = [
         id: "201",
         name: "Millie Bobby Brown",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+          "https://m.media-amazon.com/images/M/MV5BNTFjZDU5NmYtYzZlMy00YThmLTg5ZjUtYjkyZWI2OTk2Mjc1XkEyXkFqcGc@._V1_.jpg",
         character: "Elodie",
       },
     ],
@@ -346,20 +347,20 @@ export const moviesList: Movie[] = [
         id: "201",
         name: "Millie Bobby Brown",
         image:
-          "https://image.tmdb.org/t/p/w500/vklYqG7aNQR7jRzwQw2Gk7yQz8L.jpg",
+          "https://images.saymedia-content.com/.image/t_share/MTg3ODcyNzg5MjEzMDI5NDMw/greatest-hollywood-actors.jpg",
         character: "Elodie",
       },
       {
         id: "202",
         name: "Nassim Lyes",
         image:
-          "https://image.tmdb.org/t/p/w500/wS9TiG6pZeRAgvD5zsxFrqAKeSK.jpg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0B1YGxbNwy9XAq2QyEJEvFG-GvhJ_lqBeE8gKqsq7vtYrXu4wwPTkuX99MaYolEfNumk5SvZI8kJQ4DcvqFJHf61KuMkA_seW0yIv3B94MbLktmJViRFI3r0Hbua15_WuZ01InN5pR-Q/s1600/Chris+Pine+2.jpg",
       },
       {
         id: "203",
-        name: "Léa Léviant",
+        name: "Léonardo DiCaprio",
         image:
-          "https://image.tmdb.org/t/p/w500/dRbpHn9Ezg4QPGVE3Sk2rYZRk5v.jpg",
+          "https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_FMjpg_UX1000_.jpg",
       },
     ],
   },
