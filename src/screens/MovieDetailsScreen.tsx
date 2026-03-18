@@ -161,6 +161,7 @@ export default function MovieDetailsScreen() {
                 source={require("../../assets/animations/like_heart.json")}
                 style={styles.lottie}
                 loop={false}
+                autoPlay={liked}
               />
             ) : (
               <FontAwesome name="heart-o" size={24} color={colors.accent} />

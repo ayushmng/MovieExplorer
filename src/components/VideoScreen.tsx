@@ -12,7 +12,7 @@ export default function VideoScreen({
   videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
 }: VideoProps) {
   const player = useVideoPlayer(videoUrl, (player) => {
-    player.loop = true;
+    player.loop = false;
     player.play();
   });
 
