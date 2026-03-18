@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  Image,
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
@@ -12,12 +11,9 @@ import { moviesList } from "../constants/data";
 import { useTheme } from "../themes";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Strings } from "../constants/strings";
+import { IMAGE_HEIGHT, IMAGE_WIDTH, Strings } from "../constants/strings";
 import CardComponent from "../components/card/CardComponent";
 import { Movie } from "../types/movie";
-
-const IMAGE_WIDTH = 120;
-const IMAGE_HEIGHT = 180;
 
 const MovieList = () => {
   const route = useRoute();

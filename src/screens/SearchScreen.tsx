@@ -14,7 +14,7 @@ import { Movie } from "../types/movie";
 import { Entypo, Feather } from "@expo/vector-icons";
 import CardComponent from "../components/card/CardComponent";
 
-export default function SearchScreen({ onResults }) {
+export default function SearchScreen() {
   const route = useRoute();
   const { data }: Movie[] = route?.params;
   const { colors } = useTheme();
@@ -24,7 +24,6 @@ export default function SearchScreen({ onResults }) {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [results, setResults] = useState<Movie[]>(data);
 
-  // Debounce
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(query);
@@ -52,48 +51,11 @@ export default function SearchScreen({ onResults }) {
       }
       return filteredResults;
     });
-
-    // Call onResults only when debouncedQuery changes, not on every render
-    if (onResults) {
-      onResults(filteredResults);
-    }
   }, [debouncedQuery, data]);
 
   const clearSearch = () => {
     setQuery("");
   };
-
-  // const renderMovieItem = ({ item }: { item: Movie }) => (
-  //   <TouchableOpacity
-  //     style={[styles.movieItem, { backgroundColor: colors.card }]}
-  //     onPress={() => navigation.navigate("MovieDetails", { data: item })}
-  //   >
-  //     <Image source={{ uri: item.image }} style={styles.movieImage} />
-  //     <View style={styles.movieInfo}>
-  //       <Text style={[styles.movieTitle, { color: colors.text }]}>
-  //         {item.title}
-  //       </Text>
-  //       <View style={styles.movieMeta}>
-  //         <Text style={[styles.movieGenre, { color: colors.textMuted }]}>
-  //           {item.genre} • {item.duration}
-  //         </Text>
-  //         <View style={styles.ratingContainer}>
-  //           <Text style={[styles.rating, { color: colors.accent }]}>
-  //             ⭐ {item.rating}
-  //           </Text>
-  //           <Text
-  //             style={[
-  //               styles.age,
-  //               { color: colors.textMuted, backgroundColor: colors.border },
-  //             ]}
-  //           >
-  //             {item.age}
-  //           </Text>
-  //         </View>
-  //       </View>
-  //     </View>
-  //   </TouchableOpacity>
-  // );
 
   const renderMovieItem = ({ item }: { item: Movie }) => (
     <CardComponent item={item} />
@@ -112,17 +74,13 @@ export default function SearchScreen({ onResults }) {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      {/* Header */}
       <View style={styles.header}>
-        {/* Back Button */}
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
           <Feather name="arrow-left" size={22} color={colors.icon} />
         </TouchableOpacity>
-
-        {/* Search Box */}
         <View
           style={[
             styles.searchBox,
@@ -130,7 +88,6 @@ export default function SearchScreen({ onResults }) {
           ]}
         >
           <Feather name="search" size={20} color={colors.textMuted} />
-
           <TextInput
             value={query}
             onChangeText={setQuery}
@@ -147,15 +104,11 @@ export default function SearchScreen({ onResults }) {
           )}
         </View>
       </View>
-
-      {/* Results Count */}
       {results.length > 0 && (
         <Text style={[styles.resultsCount, { color: colors.textMuted }]}>
           Found {results.length} {results.length === 1 ? "movie" : "movies"}
         </Text>
       )}
-
-      {/* Search Results */}
       <FlatList
         data={results}
         keyExtractor={(item: Movie) => item.id}

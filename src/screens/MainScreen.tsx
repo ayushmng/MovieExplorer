@@ -22,6 +22,13 @@ type SectionItem =
   | { type: "myList"; data: Movie[] }
   | { type: "recommended"; data: Movie[] };
 
+const sections: SectionItem[] = [
+  { type: "header" },
+  { type: "featured", data: featuredMovies },
+  { type: "myList", data: moviesList },
+  { type: "recommended", data: moviesList },
+];
+
 export default function MainScreen() {
   const navigation = useNavigation();
   const { colors, theme, toggleTheme } = useTheme();
@@ -36,13 +43,6 @@ export default function MainScreen() {
     }, 1500);
   };
 
-  const sections: SectionItem[] = [
-    { type: "header" },
-    { type: "featured", data: featuredMovies },
-    { type: "myList", data: moviesList },
-    { type: "recommended", data: moviesList },
-  ];
-
   const StickyHeader = () => (
     <View style={{ backgroundColor: colors.background }}>
       <View style={[styles.header, { backgroundColor: colors.background }]}>
@@ -56,7 +56,7 @@ export default function MainScreen() {
 
           <View>
             <Text style={[styles.welcome, { color: colors.textMuted }]}>
-              {Strings.displayText.welcome_back}
+              {Strings.displayText.welcomeBack}
             </Text>
             <Text style={[styles.name, { color: colors.text }]}>
               {Strings.user.name}

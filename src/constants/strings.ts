@@ -1,6 +1,10 @@
+export const IMAGE_WIDTH = 120;
+export const IMAGE_HEIGHT = 180;
+
 export const Strings = {
   displayText: {
-    welcome_back: "Welcome Back",
+    welcomeBack: "Welcome Back",
+    noFavorites: "No favorites found",
   },
   screen: {
     search: "Search",

@@ -9,13 +9,10 @@ import {
 import { useTheme } from "../themes";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { Strings } from "../constants/strings";
+import { IMAGE_HEIGHT, IMAGE_WIDTH, Strings } from "../constants/strings";
 import CardComponent from "../components/card/CardComponent";
 import { Movie } from "../types/movie";
 import { useFavoritesStore } from "../store/useFavoritesStore";
-
-const IMAGE_WIDTH = 120;
-const IMAGE_HEIGHT = 180;
 
 const Favorites = () => {
   const { colors } = useTheme();
@@ -45,7 +42,7 @@ const Favorites = () => {
     <View style={styles.emptyContainer}>
       <Feather name="search" size={50} color={colors.textMuted} />
       <Text style={[styles.emptyText, { color: colors.textMuted }]}>
-        No favorites found
+        {Strings.displayText.noFavorites}
       </Text>
     </View>
   );
@@ -54,12 +51,15 @@ const Favorites = () => {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <StickyHeader />
       <FlatList
-        data={favorites}
+        data={favorites.reverse()}
         renderItem={renderMovieItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderEmptyState}
-        contentContainerStyle={styles.contentContainerStyle}
+        contentContainerStyle={[
+          styles.contentContainerStyle,
+          favorites.length === 0 && { flex: 1 },
+        ]}
       />
     </View>
   );
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   titleText: { fontSize: 22, fontWeight: "bold" },
-  contentContainerStyle: { flex: 1, paddingVertical: 8 },
+  contentContainerStyle: { paddingVertical: 8, paddingBottom: 10 },
   itemContainer: {
     flexDirection: "row",
     padding: 10,

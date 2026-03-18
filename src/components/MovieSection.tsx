@@ -19,6 +19,22 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
 
   const shuffledData = [...data].sort(() => Math.random() - 0.5).slice(0, 5);
 
+  const renderItem = ({ item }: { item: Movie }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("MovieDetails", { data: item })}
+      style={styles.movieCard}
+    >
+      <Image source={{ uri: item.image }} style={styles.movieImage} />
+      <Text
+        numberOfLines={1}
+        style={[styles.movieTitle, { color: colors.text }]}
+      >
+        {item.title}
+      </Text>
+      <Text style={styles.rating}>{getStars(item.rating)}</Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.section}>
       <TouchableOpacity
@@ -41,21 +57,7 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
         data={shuffledData}
         initialNumToRender={5}
         keyExtractor={(item: Movie) => item.id}
-        renderItem={({ item }: { item: Movie }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("MovieDetails", { data: item })}
-            style={styles.movieCard}
-          >
-            <Image source={{ uri: item.image }} style={styles.movieImage} />
-            <Text
-              numberOfLines={1}
-              style={[styles.movieTitle, { color: colors.text }]}
-            >
-              {item.title}
-            </Text>
-            <Text style={styles.rating}>{getStars(item.rating)}</Text>
-          </TouchableOpacity>
-        )}
+        renderItem={renderItem}
         style={styles.cardWrapper}
       />
     </View>

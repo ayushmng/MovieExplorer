@@ -18,8 +18,42 @@ export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
   const { colors } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const renderItem = ({ item }: { item: FeaturedMovie }) => (
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("MovieDetails", { data: item.details })
+      }
+      style={[styles.featureCard, { alignSelf: "center" }]}
+    >
+      <Image source={{ uri: item.image }} style={styles.featureImage} />
+
+      <View
+        style={[styles.featureOverlay, { backgroundColor: colors.overlay }]}
+      >
+        <Text style={[styles.featureTitle, { color: colors.text }]}>
+          {item.title}
+        </Text>
+        <Text style={[styles.featureGenre, { color: colors.textSecondary }]}>
+          {item.genre}
+        </Text>
+        <Text style={[styles.featureMeta, { color: colors.textMuted }]}>
+          {item.duration} • {item.language}
+        </Text>
+      </View>
+
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("MovieDetails", { data: item.details })
+        }
+        style={[styles.playButton, { backgroundColor: colors.accent }]}
+      >
+        <Text style={[styles.playIcon, { color: colors.text }]}>▶</Text>
+      </TouchableOpacity>
+    </TouchableOpacity>
+  );
+
   return (
-    <View>
+    <>
       <Carousel
         loop
         width={width}
@@ -29,44 +63,7 @@ export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
         data={data}
         onSnapToItem={(index) => setActiveIndex(index)}
         scrollAnimationDuration={1000}
-        renderItem={({ item }: { item: FeaturedMovie }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("MovieDetails", { data: item.details })
-            }
-            style={[styles.featureCard, { alignSelf: "center" }]}
-          >
-            <Image source={{ uri: item.image }} style={styles.featureImage} />
-
-            <View
-              style={[
-                styles.featureOverlay,
-                { backgroundColor: colors.overlay },
-              ]}
-            >
-              <Text style={[styles.featureTitle, { color: colors.text }]}>
-                {item.title}
-              </Text>
-              <Text
-                style={[styles.featureGenre, { color: colors.textSecondary }]}
-              >
-                {item.genre}
-              </Text>
-              <Text style={[styles.featureMeta, { color: colors.textMuted }]}>
-                {item.duration} • {item.language}
-              </Text>
-            </View>
-
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("MovieDetails", { data: item.details })
-              }
-              style={[styles.playButton, { backgroundColor: colors.accent }]}
-            >
-              <Text style={[styles.playIcon, { color: colors.text }]}>▶</Text>
-            </TouchableOpacity>
-          </TouchableOpacity>
-        )}
+        renderItem={renderItem}
       />
 
       <View style={styles.dotsContainer}>
@@ -83,7 +80,7 @@ export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
           />
         ))}
       </View>
-    </View>
+    </>
   );
 };
 

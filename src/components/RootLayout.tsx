@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StatusBar } from "react-native";
+import { View, StatusBar, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../themes";
 import AppNavigator from "../navigation/AppNavigator";
@@ -14,9 +14,15 @@ export default function RootLayout() {
         backgroundColor={colors.background}
       />
 
-      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+      <SafeAreaView
+        style={[styles.safeAreaView, { backgroundColor: colors.background }]}
+      >
         <AppNavigator />
       </SafeAreaView>
     </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  safeAreaView: { flex: 1, backgroundColor: "white" },
+});

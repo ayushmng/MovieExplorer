@@ -89,6 +89,30 @@ export default function MovieDetailsScreen() {
     }
   };
 
+  const Header = () => (
+    <View style={styles.buttonStyles}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.backButton}
+      >
+        <Feather name="arrow-left" size={26} color={colors.icon} />
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={shareApp} style={styles.shareButton}>
+        <Feather name="share-2" size={24} color={colors.icon} />
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderItem = ({ item }) => (
+    <View style={styles.actorCard}>
+      <Image source={{ uri: item.image }} style={styles.actorImage} />
+      <Text style={[styles.actorName, { color: colors.textSecondary }]}>
+        {item.name}
+      </Text>
+    </View>
+  );
+
   const Tag = ({ text, backgroundColor, textColor }: TagProps) => {
     return (
       <View style={[styles.tag, { backgroundColor }]}>
@@ -102,21 +126,8 @@ export default function MovieDetailsScreen() {
       showsVerticalScrollIndicator={false}
       style={[styles.container, { backgroundColor: colors.background }]}
     >
-      <View style={styles.buttonStyles}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}
-        >
-          <Feather name="arrow-left" size={26} color={colors.icon} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={shareApp} style={styles.shareButton}>
-          <Feather name="share-2" size={24} color={colors.icon} />
-        </TouchableOpacity>
-      </View>
-
+      <Header />
       <VideoScreen videoUrl={video} />
-
       <Text
         style={[
           styles.duration,
@@ -186,14 +197,7 @@ export default function MovieDetailsScreen() {
           data={cast}
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <View style={styles.actorCard}>
-              <Image source={{ uri: item.image }} style={styles.actorImage} />
-              <Text style={[styles.actorName, { color: colors.textSecondary }]}>
-                {item.name}
-              </Text>
-            </View>
-          )}
+          renderItem={renderItem}
         />
         <CustomButton
           onPress={() => handlePress(image)}
