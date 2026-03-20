@@ -14,13 +14,7 @@ import { featuredMovies, moviesList } from "../constants/data";
 import { Strings } from "../constants/strings";
 import { MovieSection } from "../components/MovieSection";
 import { MovieCarousel } from "../components/MovieCarousel";
-import { FeaturedMovie, Movie } from "../types/movie";
-
-type SectionItem =
-  | { type: "header" }
-  | { type: "featured"; data: FeaturedMovie[] }
-  | { type: "myList"; data: Movie[] }
-  | { type: "recommended"; data: Movie[] };
+import { NavigationProps, SectionItem } from "../types/movie";
 
 const sections: SectionItem[] = [
   { type: "header" },
@@ -30,7 +24,7 @@ const sections: SectionItem[] = [
 ];
 
 export default function MainScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const { colors, theme, toggleTheme } = useTheme();
 
   const [refreshing, setRefreshing] = useState(false);
@@ -83,13 +77,15 @@ export default function MainScreen() {
             name="bookmark"
             size={22}
             color={colors.toggleIcon}
-            onPress={() => navigation.navigate("Favorites")}
+            onPress={() => navigation.navigate(Strings.route.favorites)}
           />
         </View>
       </View>
       {/* Search */}
       <TouchableOpacity
-        onPress={() => navigation.navigate("Search", { data: moviesList })}
+        onPress={() =>
+          navigation.navigate(Strings.route.search, { data: moviesList })
+        }
         style={[styles.searchBox, { backgroundColor: colors.searchBackground }]}
       >
         <Feather name="search" size={20} color={colors.textMuted} />

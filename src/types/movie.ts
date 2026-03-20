@@ -1,3 +1,22 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+export type SectionItem =
+  | { type: "header" }
+  | { type: "featured"; data: FeaturedMovie[] }
+  | { type: "myList"; data: Movie[] }
+  | { type: "recommended"; data: Movie[] };
+
+export type RootStackParamList = {
+  Splash: undefined;
+  Main: undefined;
+  MovieDetails: { data: Movie };
+  MovieList: { screenTitle: string };
+  Favorites: undefined;
+  Search: { data: Movie[] };
+};
+
+export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
 export interface Movie {
   id: string;
   title: string;

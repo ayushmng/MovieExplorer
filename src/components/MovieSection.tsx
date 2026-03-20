@@ -9,19 +9,22 @@ import {
   View,
 } from "react-native";
 import { getStars } from "../utils/ratingUtils";
-import { Movie, MovieCarouselProps, MovieSectionProps } from "../types/movie";
+import { Movie, MovieSectionProps, NavigationProps } from "../types/movie";
 import { useTheme } from "../themes";
 import { useNavigation } from "@react-navigation/native";
+import { Strings } from "../constants/strings";
 
 export const MovieSection = ({ title, data }: MovieSectionProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const { colors } = useTheme();
 
   const shuffledData = [...data].sort(() => Math.random() - 0.5).slice(0, 5);
 
   const renderItem = ({ item }: { item: Movie }) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate("MovieDetails", { data: item })}
+      onPress={() =>
+        navigation.navigate(Strings.route.movieDetails, { data: item })
+      }
       style={styles.movieCard}
     >
       <Image source={{ uri: item.image }} style={styles.movieImage} />
@@ -38,7 +41,9 @@ export const MovieSection = ({ title, data }: MovieSectionProps) => {
   return (
     <View style={styles.section}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("MovieList", { screenTitle: title })}
+        onPress={() =>
+          navigation.navigate(Strings.route.movieList, { screenTitle: title })
+        }
         style={styles.sectionHeader}
       >
         <Text style={[styles.sectionTitle, { color: colors.text }]}>

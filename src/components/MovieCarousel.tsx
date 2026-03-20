@@ -10,18 +10,19 @@ import {
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "../hooks/useTheme";
-import { FeaturedMovie, Movie } from "../types/movie";
+import { FeaturedMovie, NavigationProps } from "../types/movie";
+import { Strings } from "../constants/strings";
 
 export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
   const { width } = Dimensions.get("window");
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const { colors } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const renderItem = ({ item }: { item: FeaturedMovie }) => (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate("MovieDetails", { data: item.details })
+        navigation.navigate(Strings.route.movieDetails, { data: item.details })
       }
       style={[styles.featureCard, { alignSelf: "center" }]}
     >
@@ -43,7 +44,9 @@ export const MovieCarousel = ({ data }: { data: FeaturedMovie[] }) => {
 
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate("MovieDetails", { data: item.details })
+          navigation.navigate(Strings.route.movieDetails, {
+            data: item.details,
+          })
         }
         style={[styles.playButton, { backgroundColor: colors.accent }]}
       >

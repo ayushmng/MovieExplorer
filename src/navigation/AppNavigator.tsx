@@ -8,8 +8,10 @@ import SearchScreen from "../screens/SearchScreen";
 import { useTheme } from "../themes";
 import MovieList from "../screens/MovieList";
 import Favorites from "../screens/Favorites";
+import { RootStackParamList } from "../types/movie";
+import { Strings } from "../constants/strings";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   const { colors } = useTheme();
@@ -22,12 +24,15 @@ export default function AppNavigator() {
           contentStyle: { backgroundColor: colors.background },
         }}
       >
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Main" component={MainScreen} />
-        <Stack.Screen name="MovieDetails" component={MovieDetailsScreen} />
-        <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="MovieList" component={MovieList} />
-        <Stack.Screen name="Favorites" component={Favorites} />
+        <Stack.Screen name={Strings.route.splash} component={SplashScreen} />
+        <Stack.Screen name={Strings.route.main} component={MainScreen} />
+        <Stack.Screen
+          name={Strings.route.movieDetails}
+          component={MovieDetailsScreen}
+        />
+        <Stack.Screen name={Strings.route.search} component={SearchScreen} />
+        <Stack.Screen name={Strings.route.movieList} component={MovieList} />
+        <Stack.Screen name={Strings.route.favorites} component={Favorites} />
       </Stack.Navigator>
     </NavigationContainer>
   );

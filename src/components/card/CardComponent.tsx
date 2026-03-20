@@ -1,15 +1,19 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "../../themes";
+import { NavigationProps } from "../../types/movie";
+import { Strings } from "../../constants/strings";
 
 export default function CardComponent({ item }) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const { colors } = useTheme();
 
   return (
     <TouchableOpacity
       style={[styles.movieItem, { backgroundColor: colors.card }]}
-      onPress={() => navigation.navigate("MovieDetails", { data: item })}
+      onPress={() =>
+        navigation.navigate(Strings.route.movieDetails, { data: item })
+      }
     >
       <Image source={{ uri: item.image }} style={styles.movieImage} />
 
