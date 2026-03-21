@@ -10,13 +10,13 @@ import {
 import { useTheme } from "../themes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { Movie } from "../types/movie";
+import { Movie, RouteProps } from "../types/movie";
 import { Entypo, Feather } from "@expo/vector-icons";
 import CardComponent from "../components/card/CardComponent";
 
 export default function SearchScreen() {
-  const route = useRoute();
-  const { data }: Movie[] = route?.params;
+  const route = useRoute<RouteProps<"Search">>();
+  const { data } = route?.params;
   const { colors } = useTheme();
   const navigation = useNavigation();
 

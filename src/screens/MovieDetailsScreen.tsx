@@ -19,6 +19,7 @@ import CustomButton from "../components/button/CustomButton";
 import { Strings } from "../constants/strings";
 import LottieView from "lottie-react-native";
 import { useFavoritesStore } from "../store/useFavoritesStore";
+import { NavigationProps, RouteProps } from "../types/movie";
 
 interface TagProps {
   text: string;
@@ -27,7 +28,7 @@ interface TagProps {
 }
 
 export default function MovieDetailsScreen() {
-  const route = useRoute();
+  const route = useRoute<RouteProps<"MovieDetails">>();
   const { data } = route?.params;
   const { colors } = useTheme();
   const navigation = useNavigation();

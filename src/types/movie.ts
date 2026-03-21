@@ -1,3 +1,4 @@
+import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type SectionItem =
@@ -16,6 +17,12 @@ export type RootStackParamList = {
 };
 
 export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
+export type RouteProps<T extends keyof RootStackParamList> = RouteProp<
+  RootStackParamList,
+  T
+>;
+// export type RouteProps = RouteProp<RootStackParamList, "MovieDetails">;
 
 export interface Movie {
   id: string;

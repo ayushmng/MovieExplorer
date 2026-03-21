@@ -13,10 +13,10 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { IMAGE_HEIGHT, IMAGE_WIDTH, Strings } from "../constants/strings";
 import CardComponent from "../components/card/CardComponent";
-import { Movie } from "../types/movie";
+import { Movie, RouteProps } from "../types/movie";
 
 const MovieList = () => {
-  const route = useRoute();
+  const route = useRoute<RouteProps<"MovieList">>();
   const { screenTitle } = route?.params;
   const navigation = useNavigation();
   const { colors } = useTheme();
